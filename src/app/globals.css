@@ -1,27 +1,36 @@
 @import 'tailwindcss';
-@plugin 'daisyui';
+@plugin "daisyui";
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css' layer(utilities);
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  --background: #fefce8;
+  --foreground: #1f1f1f;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --primary: #d4af37;
+  --primary-light: #ffe680;
+  --primary-dark: #a38123;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --secondary: #c00000;
+  --secondary-dark: #800000;
+
+  --accent: #1f1f1f;
+  --accent-light: #2e2e2e;
+  --accent-dark: #121212;
+
+  --neon: #00ffc3;
+  --neon-pink: #ff00aa;
+  --neon-blue: #0099ff;
+
+  --font-sans: 'Poppins', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-mono: 'IBM Plex Mono', monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
