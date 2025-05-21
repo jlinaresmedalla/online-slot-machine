@@ -47,10 +47,6 @@ const config = {
         '5xl': '4rem',
         '6xl': '5rem',
       },
-      boxShadow: {
-        casino: '0 0 15px rgba(212, 175, 55, 0.8)',
-        neon: '0 0 10px rgba(0, 255, 195, 0.6)',
-      },
     },
   },
   plugins: [daisyui],

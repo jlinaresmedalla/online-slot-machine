@@ -2,7 +2,7 @@ import WalletIcon from '@/app/icons/wallet-svgrepo-com.svg';
 import Image from 'next/image';
 
 export const Toolbar = () => (
-  <div className="navbar shadow-casino px-4">
+  <nav className="navbar shadow-sm px-4">
     <div className="flex-1">
       <span className="text-2xl font-bold tracking-wide text-primary">CASINO</span>
     </div>
@@ -13,9 +13,9 @@ export const Toolbar = () => (
       </div>
       <div className="avatar avatar-placeholder">
         <div className="bg-neutral text-neutral-content w-10 rounded-full">
-          <span>SY</span>
+          <span>JL</span>
         </div>
       </div>
     </div>
-  </div>
+  </nav>
 );
