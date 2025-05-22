@@ -1,10 +1,11 @@
 import { CASHOUT_BTN_MOVE_DISTANCE } from '@/constants/app.constants';
 import { useAppContext } from '@/contexts/AppContext';
 import { cashOutSlotSessionById, startSlotSession } from '@/utils/slotSessionApi';
+import { fetchUserInfo } from '@/utils/userApi';
 import { useState, useRef } from 'react';
 
 export const useCashOutSection = () => {
-  const { credits, rolls, setCredits, resetGame } = useAppContext()!;
+  const { credits, rolls, setCredits, resetGame, setUser } = useAppContext()!;
 
   const [style, setStyle] = useState<React.CSSProperties>({});
   const [disabled, setDisabled] = useState(false);
@@ -68,6 +69,14 @@ export const useCashOutSection = () => {
 
     await cashOutSlotSessionById(sessionId);
 
+    setCredits(0);
+
+    const updatedUserInfo = await fetchUserInfo();
+
+    if (updatedUserInfo) {
+      setUser(updatedUserInfo);
+    }
+
     setTimeout(() => {
       if (dialogRef.current) dialogRef.current.showModal();
     }, 0);
@@ -79,8 +88,6 @@ export const useCashOutSection = () => {
 
   const handlePlayAgain = async () => {
     const data = await startSlotSession();
-
-    if (!data) return;
 
     resetGame();
     setCredits(data.credits);

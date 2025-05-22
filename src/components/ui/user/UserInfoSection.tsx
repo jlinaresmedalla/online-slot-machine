@@ -1,17 +1,24 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { fetchUserInfo } from '@/utils/userApi';
-import { User } from '@/lib/domain/user.domain';
+import { useAppContext } from '@/contexts/AppContext';
 
 export const UserInfoSection = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const { user, setUser } = useAppContext()!;
 
   useEffect(() => {
-    fetchUserInfo()
-      .then(setUser)
-      .catch(() => setUser(null));
+    const fetchData = async () => {
+      const data = await fetchUserInfo();
+
+      if (data) {
+        setUser(data);
+      }
+    };
+
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const initials = (user?.firstName?.[0] ?? '') + (user?.lastName?.[0] ?? '');
