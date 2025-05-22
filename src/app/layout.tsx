@@ -19,8 +19,11 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Vegas Royale',
-  description: 'La experiencia definitiva de casino online',
+  title: 'Casino Online',
+  description: 'Best experience for online gambling',
+  icons: {
+    icon: '/icons/casino-lucky-machine-svgrepo-com.svg',
+  },
 };
 
 export default function RootLayout({
