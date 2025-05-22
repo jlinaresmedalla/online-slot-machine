@@ -2,25 +2,24 @@ import { Session } from '@/lib/domain/session.domain';
 
 export type SessionStore = {
   save: (session: Session) => void;
-  get: (id: string) => Session | undefined;
-  update: (id: string, data: Partial<Session>) => void;
-  delete: (id: string) => void;
+  get: () => Session | undefined;
+  update: (data: Partial<Session>) => void;
+  delete: () => void;
 };
 
 export const createSessionStore = (): SessionStore => {
-  const store: Record<string, Session> = {};
+  let session: Session | undefined = undefined;
 
   return {
-    save: (session) => {
-      store[session.id] = session;
+    save: (newSession) => {
+      session = newSession;
     },
-    get: (id) => store[id],
-    update: (id, data) => {
-      const session = store[id];
-      if (session) store[id] = { ...session, ...data };
+    get: () => session,
+    update: (data) => {
+      if (session) session = { ...session, ...data };
     },
-    delete: (id) => {
-      delete store[id];
+    delete: () => {
+      session = undefined;
     },
   };
 };
