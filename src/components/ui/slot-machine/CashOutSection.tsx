@@ -11,7 +11,6 @@ export const CashOutSection = () => {
     handleHover,
     handleClick,
     rolls,
-    closeModal,
     handlePlayAgain,
     setDialogRef,
   } = useCashOutSection();
@@ -40,9 +39,6 @@ export const CashOutSection = () => {
             <Button variant="secondary" onClick={handlePlayAgain}>
               Play Again
             </Button>
-            <form method="dialog">
-              <Button onClick={closeModal}>Close</Button>
-            </form>
           </div>
         </div>
       </dialog>

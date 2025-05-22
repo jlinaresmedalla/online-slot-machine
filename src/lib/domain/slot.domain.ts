@@ -13,10 +13,12 @@ export const houseRoll = (credits: number): Symbol[] => {
   let result = rollSlots();
   if (isWin(result)) {
     let rerollChance = 0;
+    const luck = Math.random();
 
     if (credits >= 40 && credits <= 60) rerollChance = 0.3;
     if (credits > 60) rerollChance = 0.6;
-    if (Math.random() < rerollChance) result = rollSlots();
+
+    if (luck < rerollChance) result = rollSlots();
   }
   return result;
 };

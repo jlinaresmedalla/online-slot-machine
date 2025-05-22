@@ -8,7 +8,7 @@ export type User = {
 let user: User = {
   firstName: 'Juan',
   lastName: 'Linares',
-  email: 'juan.linares@email.com',
+  email: 'jlinaresmedalla@email.com',
   credits: 0,
 };
 

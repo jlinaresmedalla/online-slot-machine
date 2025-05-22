@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Online Casino 🎰
+
+Ultimate Online Slot Machine Experience — built with [Next.js](https://nextjs.org/), TypeScript, Tailwind CSS, and DaisyUI.
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Game Rules](#game-rules)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [API Endpoints](#api-endpoints)
+
+---
+
+## Overview
+
+Online casino brings an interactive slot machine web app. Users can spin the reels, win credits, and cash out their winnings.
+
+## Game Rules
+
+- Each user starts with **10 credits**.
+- Each spin costs **1 credit**.
+- Match 3 symbols to win:
+  - 🍒 Cherry: 10 credits
+  - 🍋 Lemon: 20 credits
+  - 🍊 Orange: 30 credits
+  - 🍉 Watermelon: 40 credits
+- You can cash out after at least **2 spins**.
+- Credits are transferred to your wallet on cash out.
+
+## Tech Stack
+
+- [Next.js 14+](https://nextjs.org/)
+- [React 18+](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/)
+- [ESLint + Prettier](https://eslint.org/)
 
 ## Getting Started
 
-First, run the development server:
+1. **Install dependencies:**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   ```sh
+   npm install
+   ```
+
+2. **Run the development server:**
+
+   ```sh
+   npm run dev
+   ```
+
+## Project Structure
+
+```text
+src/
+  app/         # Next.js app directory (routing, pages, layout)
+  components/  # UI components
+  constants/   # App-wide constants
+  contexts/    # React context providers
+  hooks/       # Custom React hooks
+  lib/         # Domain logic, infrastructure, and services
+  utils/       # Utility functions and API clients
+public/        # Static assets (icons, images)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Endpoints
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `POST /api/v1/slot-session/start` — Start a new slot session
+- `POST /api/v1/slot-session/roll` — Roll the slot machine
+- `POST /api/v1/slot-session/cashout` — Cash out current session
+- `GET /api/v1/user/user-info` — Get user info and wallet credits

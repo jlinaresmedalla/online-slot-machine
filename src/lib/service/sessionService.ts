@@ -37,7 +37,6 @@ export const cashOut = async (store: SessionStore, sessionId: string) => {
   if (!session || !canCashOut(session)) throw new Error('Cannot cash out');
 
   addCreditsToUser(session.credits);
-  store.update(sessionId, { finished: true });
-
+  store.update(sessionId, { credits: 0, finished: true });
   return { credits: session.credits };
 };

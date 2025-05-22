@@ -15,7 +15,7 @@ export const SlotMachine = () => {
         variant="secondary"
         onClick={() => rollSlots()}
         disabled={isSlotLoading || credits <= 0}
-        className="w-40 h-16 text-xl"
+        className="w-40 h-16 text-xl animate-bounce"
       >
         {isSlotLoading ? <span className="loading loading-spinner"></span> : 'Roll'}
       </Button>
