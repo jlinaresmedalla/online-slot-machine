@@ -12,6 +12,6 @@ export const createSession = (id: string): Session => ({
   finished: false,
 });
 
-export const canRoll = (session: Session) => session.credits > 0 && !session.finished;
+export const canRoll = (session: Session) => session.credits > 0;
 
-export const canCashOut = (session: Session) => session.rolls >= 2 && !session.finished;
+export const canCashOut = (session: Session) => session.rolls >= 2;

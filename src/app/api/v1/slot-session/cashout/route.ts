@@ -1,16 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { inMemorySessionStore } from '@/lib/infrastructure/sessionStore';
+import { NextResponse } from 'next/server';
 import { cashOut } from '@/lib/service/sessionService';
 
-export const POST = async (req: NextRequest) => {
-  let sessionId: string | undefined;
+export const POST = async () => {
   try {
-    const body = await req.json().catch(() => null);
-    sessionId = body?.sessionId;
-    if (!sessionId) {
-      return NextResponse.json({ error: 'Missing sessionId' }, { status: 400 });
-    }
-    const result = cashOut(inMemorySessionStore, sessionId);
+    const result = cashOut();
 
     return NextResponse.json(result);
   } catch (e) {

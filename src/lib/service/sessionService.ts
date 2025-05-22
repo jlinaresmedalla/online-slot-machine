@@ -1,23 +1,21 @@
-import { createSession, canRoll, canCashOut, Session } from '@/lib/domain/session.domain';
+import { createSession, canCashOut, Session } from '@/lib/domain/session.domain';
 import { houseRoll, isWin, getPayout } from '@/lib/domain/slot.domain';
-import type { SessionStore } from '@/lib/infrastructure/sessionStore';
+import { inMemorySessionStore } from '@/lib/infrastructure/sessionStore';
 import { addCreditsToUser, setUser } from '../domain/user.domain';
 
-export const startSession = (store: SessionStore): Session => {
+export const startSession = (): Session => {
   const id = crypto.randomUUID();
   const session = createSession(id);
 
-  store.save(session);
-  const newSession = store.get()!;
+  inMemorySessionStore.save(session);
+  const newSession = inMemorySessionStore.get()!;
   setUser({ credits: 0 });
 
   return newSession;
 };
 
-export const roll = (store: SessionStore, sessionId: string) => {
-  const session = store.get()!;
-
-  if (!session || !canRoll(session)) throw new Error('Cannot roll');
+export const roll = () => {
+  const session = inMemorySessionStore.get()!;
 
   const result = houseRoll(session.credits);
   let credits = session.credits - 1;
@@ -28,17 +26,17 @@ export const roll = (store: SessionStore, sessionId: string) => {
     credits += payout;
   }
 
-  store.update({ credits, rolls: session.rolls + 1 });
+  inMemorySessionStore.update({ credits, rolls: session.rolls + 1 });
 
   return { result, credits, payout, rolls: session.rolls + 1 };
 };
 
-export const cashOut = (store: SessionStore, sessionId: string) => {
-  const session = store.get();
+export const cashOut = () => {
+  const session = inMemorySessionStore.get();
 
   if (!session || !canCashOut(session)) throw new Error('Cannot cash out');
 
   addCreditsToUser(session.credits);
-  store.update({ credits: 0, finished: true });
+  inMemorySessionStore.update({ credits: 0, finished: true });
   return { credits: session.credits };
 };
