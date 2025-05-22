@@ -5,7 +5,7 @@ import { fetchUserInfo } from '@/utils/userApi';
 import { useState, useRef } from 'react';
 
 export const useCashOutSection = () => {
-  const { credits, rolls, setCredits, resetGame, setUser } = useAppContext()!;
+  const { credits, rolls, setCredits, resetGame, setUserInfo } = useAppContext()!;
 
   const [style, setStyle] = useState<React.CSSProperties>({});
   const [disabled, setDisabled] = useState(false);
@@ -74,7 +74,7 @@ export const useCashOutSection = () => {
     const updatedUserInfo = await fetchUserInfo();
 
     if (updatedUserInfo) {
-      setUser(updatedUserInfo);
+      setUserInfo(updatedUserInfo);
     }
 
     setTimeout(() => {
@@ -88,6 +88,12 @@ export const useCashOutSection = () => {
 
   const handlePlayAgain = async () => {
     const data = await startSlotSession();
+
+    const updatedUserInfo = await fetchUserInfo();
+
+    if (updatedUserInfo) {
+      setUserInfo(updatedUserInfo);
+    }
 
     resetGame();
     setCredits(data.credits);

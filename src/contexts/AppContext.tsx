@@ -4,8 +4,8 @@ import { User } from '@/lib/domain/user.domain';
 import { createContext, useContext, useState, useCallback, PropsWithChildren } from 'react';
 
 interface AppContextProps {
-  user: User | null;
-  setUser: (u: User | null) => void;
+  userInfo: User | null;
+  setUserInfo: (u: User | null) => void;
   credits: number;
   setCredits: (c: number) => void;
   slotResult: Symbol[] | null;
@@ -19,7 +19,7 @@ const AppContext = createContext<AppContextProps | undefined>(undefined);
 
 export const AppProvider = ({ children }: PropsWithChildren) => {
   const [credits, setCredits] = useState(10);
-  const [user, setUser] = useState<User | null>(null);
+  const [userInfo, setUserInfo] = useState<User | null>(null);
   const [slotResult, setSlotResult] = useState<Symbol[] | null>(null);
   const [rolls, setRolls] = useState(0);
 
@@ -34,8 +34,8 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
   return (
     <AppContext.Provider
       value={{
-        user,
-        setUser,
+        userInfo,
+        setUserInfo,
         credits,
         setCredits,
         slotResult,

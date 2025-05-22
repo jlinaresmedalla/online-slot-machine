@@ -1,13 +1,15 @@
 import { createSession, canRoll, canCashOut, Session } from '@/lib/domain/session.domain';
 import { houseRoll, isWin, getPayout } from '@/lib/domain/slot.domain';
 import type { SessionStore } from '@/lib/infrastructure/sessionStore';
-import { addCreditsToUser } from '../domain/user.domain';
+import { addCreditsToUser, setUser } from '../domain/user.domain';
 
 export const startSession = (store: SessionStore): Session => {
   const id = crypto.randomUUID();
   const session = createSession(id);
 
   store.save(session);
+
+  setUser({ credits: 0 });
 
   return session;
 };
