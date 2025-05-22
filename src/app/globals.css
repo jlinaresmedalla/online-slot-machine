@@ -6,23 +6,8 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 
 :root {
-  --background: #fefce8;
-  --foreground: #1f1f1f;
-
-  --primary: #d4af37;
-  --primary-light: #ffe680;
-  --primary-dark: #a38123;
-
-  --secondary: #c00000;
-  --secondary-dark: #800000;
-
-  --accent: #1f1f1f;
-  --accent-light: #2e2e2e;
-  --accent-dark: #121212;
-
-  --neon: #00ffc3;
-  --neon-pink: #ff00aa;
-  --neon-blue: #0099ff;
+  --background: #1b1b1f;
+  --foreground: #f5f5f5;
 
   --font-sans: 'Poppins', sans-serif;
   --font-serif: 'Playfair Display', serif;

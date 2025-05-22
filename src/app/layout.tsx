@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Poppins, IBM_Plex_Mono } from 'next/font/google';
+import { Toolbar } from '@/components';
+import { AppProvider } from '@/contexts/AppContext';
 import './globals.css';
-import { Toolbar } from '@/components/ui/Toolbar';
 
 const poppins = Poppins({
   variable: '--font-sans',
@@ -30,8 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${plexMono.variable} antialiased`}>
-        <Toolbar />
-        <main className="container mx-auto p-4">{children}</main>
+        <AppProvider>
+          <Toolbar />
+          <main className="container mx-auto p-4">{children}</main>
+        </AppProvider>
       </body>
     </html>
   );
