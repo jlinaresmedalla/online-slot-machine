@@ -8,10 +8,10 @@ export const startSession = (store: SessionStore): Session => {
   const session = createSession(id);
 
   store.save(session);
-
+  const newSession = store.get(id)!;
   setUser({ credits: 0 });
 
-  return session;
+  return newSession;
 };
 
 export const roll = (store: SessionStore, sessionId: string) => {
@@ -33,7 +33,7 @@ export const roll = (store: SessionStore, sessionId: string) => {
   return { result, credits, payout, rolls: session.rolls + 1 };
 };
 
-export const cashOut = async (store: SessionStore, sessionId: string) => {
+export const cashOut = (store: SessionStore, sessionId: string) => {
   const session = store.get(sessionId);
 
   if (!session || !canCashOut(session)) throw new Error('Cannot cash out');
