@@ -8,16 +8,20 @@ export type SessionStore = {
 };
 
 export const createSessionStore = (): SessionStore => {
-  const store = new Map<string, Session>();
+  const store: Record<string, Session> = {};
 
   return {
-    save: (session) => store.set(session.id, session),
-    get: (id) => store.get(id),
-    update: (id, data) => {
-      const session = store.get(id);
-      if (session) store.set(id, { ...session, ...data });
+    save: (session) => {
+      store[session.id] = session;
     },
-    delete: (id) => store.delete(id),
+    get: (id) => store[id],
+    update: (id, data) => {
+      const session = store[id];
+      if (session) store[id] = { ...session, ...data };
+    },
+    delete: (id) => {
+      delete store[id];
+    },
   };
 };
 

@@ -16,7 +16,7 @@ export const startSession = (store: SessionStore): Session => {
 
 export const roll = (store: SessionStore, sessionId: string) => {
   const session = store.get(sessionId);
-
+  console.log(session);
   if (!session || !canRoll(session)) throw new Error('Cannot roll');
 
   const result = houseRoll(session.credits);
