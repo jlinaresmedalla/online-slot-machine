@@ -1,4 +1,4 @@
-import { Session } from '@/domain/session';
+import { Session } from '@/lib/domain/session.domain';
 
 export type SessionStore = {
   save: (session: Session) => void;
