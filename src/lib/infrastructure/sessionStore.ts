@@ -7,14 +7,18 @@ export type SessionStore = {
   delete: (id: string) => void;
 };
 
-const sessions = new Map<string, Session>();
+export const createSessionStore = (): SessionStore => {
+  const store = new Map<string, Session>();
 
-export const inMemorySessionStore: SessionStore = {
-  save: (session) => sessions.set(session.id, session),
-  get: (id) => sessions.get(id),
-  update: (id, data) => {
-    const session = sessions.get(id);
-    if (session) sessions.set(id, { ...session, ...data });
-  },
-  delete: (id) => sessions.delete(id),
+  return {
+    save: (session) => store.set(session.id, session),
+    get: (id) => store.get(id),
+    update: (id, data) => {
+      const session = store.get(id);
+      if (session) store.set(id, { ...session, ...data });
+    },
+    delete: (id) => store.delete(id),
+  };
 };
+
+export const inMemorySessionStore = createSessionStore();
